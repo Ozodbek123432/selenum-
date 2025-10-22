@@ -1,0 +1,5 @@
+all - 1 tabledagi 1 id 2 tabledagi 2 ytabldagi  aydiga 100% tgri kelsa ishladi
+calumin = qatorlar
+table = calminlar toplami
+DDL = data  definity language
+DML - data manipulation  language
