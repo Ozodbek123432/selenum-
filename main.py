@@ -24,7 +24,7 @@ driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install())
 wait = WebDriverWait(driver, 15)
 try:
     driver.get(LOGIN_URL)
-    phone_locator = (By.ID,  'phone')
+    phone_locator = (By.CSS_SELECTOR,  'tel')
     password_locator = (By.ID, "password")
     submit_locator = (By.CSS_SELECTOR, "button[type='submit']")
     phone_el = wait.until(EC.presence_of_element_located(phone_locator))
