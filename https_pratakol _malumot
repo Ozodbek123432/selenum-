@@ -1,0 +1,25 @@
+🟩 2xx – Muvaffaqiyatli
+Kod	Nomi	Tushuntirish
+200 OK	✅	So‘rov muvaffaqiyatli, hamma narsa joyida.
+201 Created	🧱	Yangi resurs yaratildi (masalan, POST orqali ma’lumot qo‘shilganda).
+204 No Content	🕳️	So‘rov bajarildi, lekin javobda hech narsa yo‘q.
+🟦 3xx – Yo‘naltirishlar
+Kod	Nomi	Tushuntirish
+301 Moved Permanently	🔁	Resurs butunlay boshqa manzilga ko‘chirilgan.
+302 Found	📍	Resurs vaqtincha boshqa joyda joylashgan.
+304 Not Modified	💾	Resurs o‘zgarmagan (cache dan foydalanish mumkin).
+🟧 4xx – Mijoz xatolari
+Kod	Nomi	Tushuntirish
+400 Bad Request	🚫	So‘rov noto‘g‘ri yuborilgan.
+401 Unauthorized	🔐	Avtorizatsiya kerak (login/token yo‘q).
+403 Forbidden	⛔	Kirish taqiqlangan, lekin login to‘g‘ri.
+404 Not Found	❓	Resurs topilmadi (eng mashhuri 😅).
+405 Method Not Allowed	❌	Bu URL uchun bu usul (masalan, POST) ruxsat etilmagan.
+429 Too Many Requests	🚨	Juda ko‘p so‘rov yuborilgan (rate limit).
+🟥 5xx – Server xatolari
+Kod	Nomi	Tushuntirish
+500 Internal Server Error	💥	Server ichida kutilmagan xato.
+501 Not Implemented	🧩	Server bu funksiyani qo‘llab-quvvatlamaydi.
+502 Bad Gateway	⚡	Server boshqa serverdan noto‘g‘ri javob oldi.
+503 Service Unavailable	💤	Server vaqtincha ishlamayapti (masalan, texnik xizmatda).
+504 Gateway Timeout	⏰	Serverdan javob keldi, lekin kechikib.
