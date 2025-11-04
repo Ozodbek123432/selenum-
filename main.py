@@ -4,10 +4,10 @@ from time import sleep
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 load_dotenv()
 LOGIN_URL = os.getenv("LOGIN_URL")
@@ -35,6 +35,8 @@ try:
         pwd_el.send_keys(os.getenv("LOGIN_PASSWORD"))
     submit_el = wait.until(EC.element_to_be_clickable(submit_locator))
     submit_el.click()
+    button = driver.find_element(By.CLASS_NAME, "btn-primary")
+    button.click()
     sleep(1000)
 finally:
     driver.quit()
