@@ -59,9 +59,10 @@ Ma’lumotni lug‘at (dict) yoki ro‘yxat (list) sifatida qaytaradi.
 Student.objects.values("name", "grade")
 Student.objects.values_list("name", flat=True)
 -------------------------------------------------------------terminal vazilafar
-pip install djangorestframework = django yuklab olish uchun ishlatyiladi
-django-admin startproject broject_setings . = jangoani sozlarni saqlash
-python manage.py startapp products_app = cod yozadigan fayil uchun
-python manage.py makemigrations = tablearni qoshiadi 1
-python manage.py migrate = tabelarni qoshib kealadi  2 kemtaket yoziladi
-python manage.py createsuperuser = admin panel uyaratadi 3
+    pip install djangorestframework = django yuklab olish uchun ishlatyiladi
+    django-admin startproject broject_setings . = jangoani sozlarni saqlash
+    python manage.py startapp products_app = cod yozadigan fayil uchun
+    python manage.py makemigrations = tablearni qoshiadi 1
+    python manage.py migrate = tabelarni qoshib kealadi  2 kemtaket yoziladi
+    python manage.py createsuperuser = admin panel uyaratadi 3
+-------------------------------------------------------------
