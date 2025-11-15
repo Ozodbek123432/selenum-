@@ -1,35 +1,37 @@
-import cv2
-import time
-import os
-from datetime import datetime
+import subprocess
+import re
 
-# Papka yaratish
-if not os.path.exists('rasmlar'):
-    os.makedirs('rasmlar')
 
-# Kamera ochish
-camera = cv2.VideoCapture(0)
+def wifi_signal_strength():
 
-if not camera.isOpened():
-    print("Kamera ochilmadi!")
-    exit()
+    """O'z Wi-Fi signall kuchliligini o'lchash"""
+    try:
+        # Wi-Fi signallarni olish
+        result = subprocess.run(['nmcli', '-f', 'SSID,SIGNAL', 'dev', 'wifi'],
+                                capture_output=True, text=True)
 
-print("Kamera tayyor. 5 soniyadan keyin rasm olinadi...")
-time.sleep(5)
+        print("=== WI-FI SIGNAL KUCHLILIGI ===")
+        for line in result.stdout.split('\n')[1:]:
+            if line.strip():
+                match = re.search(r'(\S+)\s+(\d+)%', line)
+                if match:
+                    ssid = match.group(1)
+                    signal = int(match.group(2))
 
-# Rasm olish
-ret, frame = camera.read()
+                    # Signal baholash
+                    if signal >= 80:
+                        status = "✅ A'lo"
+                    elif signal >= 60:
+                        status = "✅ Yaxshi"
+                    elif signal >= 40:
+                        status = "⚠️ O'rtacha"
+                    else:
+                        status = "❌ Zaif"
 
-if ret:
-    # Vaqt bilan fayl nomi
-    vaqt = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    fayl_nomi = f"rasmlar/rasm_{vaqt}.jpg"
+                    print(f"📶 {ssid}: {signal}% - {status}")
 
-    # Rasmni saqlash
-    cv2.imwrite(fayl_nomi, frame)
-    print(f"Rasm saqlandi: {fayl_nomi}")
-else:
-    print("Rasm olinmadi!")
+    except Exception as e:
+        print(f"Xatolik: {e}")
 
-# Kamera yopish
-camera.release()
+
+wifi_signal_strength()
