@@ -1,0 +1,117 @@
+🌐 Django’da WSGI va ASGI nima?
+
+Django — bu web-framework, ya’ni u brauzerdan keladigan so'rovlarni (HTTP request) qabul qilib, javob (response) qaytaradi. Lekin Django o'zi buni to'g'ridan-to'g'ri qilolmaydi — bu ishni server interfeysi degan narsa bajaradi.
+🤔 WSGI va ASGI nima?
+Texnologiya	To'liq nomi	Tavsif	Django versiyasi
+🧩 WSGI	Web Server Gateway Interface	Sinxron ishlaydi. Har bir so'rov alohida process/threadda ishlaydi	Django 3.0 gacha (asosiy)
+⚡ ASGI	Asynchronous Server Gateway Interface	Asinxron ishlaydi. Bir vaqtning o'zida ko'plab so'rovlarni bajaradi	Django 3.0 dan boshlab
+🔍 Qachon qaysi interfeysdan foydalanish kerak?
+
+    WSGI: Oddiy web saytlar, bloglar, ma'lumotnomalar
+
+    ASGI: Real-time ilovalar (chat, yangiliklar oqimi), WebSockets, ko'p sonli bir vaqtli foydalanuvchilar
+
+📊 Django Models - Ma'lumotlar Bazasi bilan Ishlash
+🏗️ Model Yaratish
+python
+
+from django.db import models
+
+class Student(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.IntegerField()
+    grade = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.name
+
+💾 CRUD Operatsiyalari
+1. Ma'lumot qo'shish - save()
+python
+
+student = Student(name="Ali", age=16, grade="10A")
+student.save()
+
+2. Barcha ma'lumotlarni olish - objects.all()
+python
+
+students = Student.objects.all()
+
+3. Filtrlash - objects.filter() (WHERE sharti)
+python
+
+ten_b_students = Student.objects.filter(grade="10B")
+
+4. Bitta yozuvni olish - objects.get()
+python
+
+student = Student.objects.get(id=1)
+
+5. Shartga mos bo'lmaganlarni olish - objects.exclude()
+python
+
+not_10b = Student.objects.exclude(grade="10B")
+
+6. Tartiblash - objects.order_by()
+python
+
+students = Student.objects.order_by("age")        # o'sish tartibida
+students = Student.objects.order_by("-age")       # kamayish tartibida
+
+7. Soni - count()
+python
+
+student_count = Student.objects.count()
+
+8. Yangilash - update()
+python
+
+Student.objects.filter(grade="10A").update(grade="11A")
+
+9. O'chirish - delete()
+python
+
+Student.objects.get(id=3).delete()
+
+10. Ma'lumotlarni formatda olish
+python
+
+# Lug'at formatida
+Student.objects.values("name", "grade")
+
+# Ro'yxat formatida
+Student.objects.values_list("name", flat=True)
+
+🛠️ Django Terminal Buyruqlari
+🔧 Loyihani Boshlash
+bash
+
+# Django Rest Framework ni o'rnatish
+pip install djangorestframework
+
+# Yangi loyiha yaratish
+django-admin startproject project_settings .
+
+# Yangi app yaratish
+python manage.py startapp products_app
+
+🗄️ Ma'lumotlar Bazasi Sozlamalari
+bash
+
+# 1. O'zgarishlarni yaratish
+python manage.py makemigrations
+
+# 2. Ma'lumotlar bazasiga qo'llash
+python manage.py migrate
+
+# 3. Admin panel uchun superuser yaratish
+python manage.py createsuperuser
+
+🚀 Server Ishga Tushirish
+bash
+
+# Development serverni ishga tushirish
+python manage.py runserver
+
+# Ma'lumotlar bazasini tekshirish
+python manage.py shell
